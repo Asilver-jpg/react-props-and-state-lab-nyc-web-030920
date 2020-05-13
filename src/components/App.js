@@ -23,24 +23,24 @@ class App extends React.Component {
   fetchPets = () => {
       let type = this.state.filters.type
       if (type === "all"){
-          fetch(/api/pets)
-          .then(resp = resp.json())
+          fetch("/api/pets")
+          .then(resp => resp.json())
           .then(data => {this.setState({...this.state, pets: data})})
-        }
-      else{
+        }else{
         fetch(`/api/pets?type=${type}`)
         .then(resp => resp.json())
         .then(data => {this.setState({...this.state, pets:data})})
-      }
-      
+      } 
   }
 
 
-  onAdoptPet = (id, event) => {
+  onAdoptPet = (event) => {
+  
       let pets = this.state.pets
       for(const pet of pets){
-        if (pet.id === id){
+        if (pet.id === event.target.dataset.id){
           pet.isAdopted = true
+          console.dir(this.state.pets)
           return true 
         }
       }

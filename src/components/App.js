@@ -39,9 +39,12 @@ class App extends React.Component {
       let pets = this.state.pets
       for(const pet of pets){
         if (pet.id === event.target.dataset.id){
+         
           pet.isAdopted = true
-          console.dir(this.state.pets)
+          this.setState({data: this.state.data, ...this.state})
+          
           return true 
+          
         }
       }
       return false
